@@ -1,0 +1,146 @@
+
+main{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    min-height: 100vh;
+    background-image: url(../images/bg.jpg);
+    background-size: cover;
+    align-items: center;
+    justify-content: center;
+    padding: 20px 20px 50px;
+   
+}
+
+header{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: rgb(255, 255, 255, 0.7);
+    font-size: 1.2em;
+    max-width: 800px;
+    padding: 30px;
+    width: 100%;
+    margin: 0 0 30px ;
+    border-radius: 5px ;
+}
+
+/* no grid tem o ex: grid-template-columns: 1fr; que ocupa tudo,, se por 1fr 1fr; e irá dividio em 2, 3 ...e assim por sdiante,,,,  ao em vez de ficar repitindo o fr, posso utilizar a função repeat(nº de vezes que quero repitir,,) */
+
+/*
+grid-template-columns: 200px 200px;  cada valor é a largura de uma nova coluna*/
+
+.grid{
+    display: grid;
+    grid-template-columns: repeat(5, 1fr); 
+    width: 100%;
+    max-width: 800px;
+    gap: 15px;
+    /* background-color: red; */
+    margin: 0 auto;
+}
+
+
+/* quero que a proporção do elemento seja sempre o msm, exatamente igual, independente do tamanho da tela, então ao inves de usar o height: ; irei definir a proporção da utilizando o aspct-ratio: ;  1/1 = quadrado,, 3/4...*/
+/* para não orrorer a retação de forma instantanea no hover, irei utulizar uma "transição" na carta e aplicarei essa transição, para todas as propriedades "all", e deixarei um pouco mais suave "ease" */
+.card{
+    aspect-ratio: 3/4;
+    width: 100%; 
+    /* background-color: #333; */
+    border-radius: 5px;
+    position: relative;
+    transition: all 800ms ease;
+    transform-style: preserve-3d;
+    background-color: #ccc;
+}
+
+.face{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    cursor: pointer;
+    border: 2px solid #39813a;
+    border-radius: 5px;
+    background-size: cover;
+    background-position: center;
+    transition: all 400ms ease;
+}
+
+
+/* Urulizei o  transform: rotateY(180deg); de novo, para que o background da proxima carta não aprecesse virada, ai com mais 180deg, ela ja vira os 360deg e para na possição, uma das formas de se resolver isso */
+.front{
+    /* background: url(../images/beth.png); */
+    background-size: cover;
+    background-position: center;
+    transform: rotateY(180deg);
+    
+}
+
+.back{
+    background: url(../images/back.png);
+    backface-visibility: hidden;
+    background-size: cover;
+    background-position: center;
+}
+
+.reveal-card{
+    transform: rotateY(180deg);
+}
+
+ /* .card:hover{
+    transform: rotateY(180deg);
+}  */
+
+/* ele dará o efeito de virama, mas ele apenas irá inverter as costas da img, e quero q quando ele vire, aparece a frente da carta,, mas isso ocorre pq isso é um objeto 2D, e não um 3D que tem um giro e uma profundidade,,
+Mas posso resolver isso usando o transform-style: preserve-3d; para preservar um comportamento de 3D,,
+  Só que tmb precisarei esconder as costas da carta assim que ela girar, pq se não ela irá monstrar ela mesma, já q ela tem um bacground visivel, e posso ocultar a parte de traz da face das costas vendo somente a parte da frente,, backface-Visibility: hidden;*/
+
+  .disabled-card{
+    filter: saturate(0);
+    opacity: 0.5;
+  }
+/*  filter: saturate(0);,, irá deixar a img preto e branco,,
+opacity: 0.5; irá deixar a opacidade com 50%*/
+
+
+
+/*   transition: all 400ms ease;
+
+Esse código está usando a propriedade transition em CSS para aplicar uma transição suave a todas as propriedades CSS de um elemento quando ocorrem mudanças nesses estilos. A transição ocorrerá ao longo de 400 milissegundos (0,4 segundos) e usará a função de temporização "ease".
+
+Aqui está uma explicação detalhada:
+
+transition: 
+Essa é uma propriedade CSS que permite criar efeitos de transição suaves entre diferentes valores de propriedades CSS ao longo de um determinado período de tempo.
+all: Isso define quais propriedades CSS estarão sujeitas à transição. No caso de 
+
+"all"
+ todas as propriedades do elemento serão afetadas.
+
+400ms:
+ Isso define a duração da transição, ou seja, quanto tempo a transição levará para ocorrer. Neste caso, a transição será de 400 milissegundos (0,4 segundos).
+
+ease: 
+Isso define a função de temporização da transição, que controla a velocidade da transição ao longo do tempo. "Ease" é uma função de temporização que começa lentamente, acelera no meio e depois diminui novamente. Isso resulta em uma transição suave e natural.
+Juntando tudo isso, o trecho de código indica que todas as propriedades do elemento terão uma transição suave quando ocorrerem mudanças, com uma duração de 400 milissegundos e uma função de temporização "ease". */
+
+
+
+
+
+
+
+
+
+/*
+position: relative;
+ animation: card-animation 2s linear infinite;
+@keyframes card-animation{ 
+    from {
+        right: -80px;
+    }
+
+    to {
+        right: 100%;
+    }
+}*/
